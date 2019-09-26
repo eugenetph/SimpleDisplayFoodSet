@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './SideDrawer.css'
 
 import { Card, Button, Drawer } from 'antd'
 
-const SideDrawer = ({ visible, setVisible, cardOrder, setCardOrder }) => {
+import FoodContext from './context/FoodContext'
+
+const SideDrawer = ({ visible, setVisible }) => {
+
+  const context = useContext(FoodContext)
 
   const temp = [
     {
@@ -24,11 +28,13 @@ const SideDrawer = ({ visible, setVisible, cardOrder, setCardOrder }) => {
   ]
 
   const cardOrderHandler = (order) => {
-    if (cardOrder.includes(order)) {
-      const newOrder = cardOrder.filter(item => item !== order)
-      setCardOrder(newOrder)
+    if (context.state.includes(order)) {
+      const newOrder = context.state.filter(item => item !== order)
+      // setCardOrder(newOrder)
+      context.dispatch({ type: 'UPDATE_FOOD_SET', payload: newOrder})
     } else {
-      setCardOrder([...cardOrder, order])
+      // setCardOrder([...cardOrder, order])
+      context.dispatch({ type: 'UPDATE_FOOD_SET', payload: [...context.state, order]})
     }
   }
 
@@ -50,11 +56,11 @@ const SideDrawer = ({ visible, setVisible, cardOrder, setCardOrder }) => {
               <p>{item.desc}</p>
               <Button
                 className='drawer-button'
-                type={cardOrder.includes(item.key) ? 'danger' : 'primary'}
+                type={context.state.includes(item.key) ? 'danger' : 'primary'}
                 onClick={() => { cardOrderHandler(item.key) }}
                 ghost
               >
-                {cardOrder.includes(item.key) ? 'Remove' : 'Add'}
+                {context.state.includes(item.key) ? 'Remove' : 'Add'}
               </Button>
             </Card>
           )

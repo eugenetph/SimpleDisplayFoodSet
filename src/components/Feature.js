@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useContext } from 'react'
 import './Feature.css'
 
 import ChickenRice from '../assets/Chicken-Rice.jpg'
@@ -7,7 +7,11 @@ import BeefBowl from '../assets/Pepper-Bowl-2-1.jpg'
 
 import { Card } from 'antd'
 
-const Feature = ({ cardOrder, setVisible }) => {
+import FoodContext from './context/FoodContext'
+
+const Feature = ({ setVisible }) => {
+
+  const context = useContext(FoodContext)
 
   const featureCards = {
     'chicken rice': {
@@ -25,8 +29,8 @@ const Feature = ({ cardOrder, setVisible }) => {
   }
 
   const cardMemo = useMemo(() => {
-    return cardOrder.map(order => featureCards[order])
-  }, [cardOrder, featureCards])
+    return context.state.map(order => featureCards[order])
+  }, [context.state, featureCards])
 
   return (
     <div className='feature-container'>
