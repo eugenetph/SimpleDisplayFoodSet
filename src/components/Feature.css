@@ -1,0 +1,30 @@
+.feature-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 20px 0;
+}
+
+.feature-card {
+    margin: 0 40px;
+    width: 400px;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+}
+
+.feature-container .ant-card-bordered {
+    width: 400px !important;
+    height: 420px !important;
+}
+
+.feature-container .ant-card-body {
+    height: 420px !important;
+    cursor: pointer;
+}
+
+.empty-card-desc {
+    margin: 130px 0;
+}

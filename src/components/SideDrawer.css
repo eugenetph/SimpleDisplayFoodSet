@@ -1,0 +1,16 @@
+.drawer-card {
+    margin: 15px 0;
+}
+
+.ant-drawer-content-wrapper {
+    width: 350px !important;
+}
+
+.drawer-button {
+    margin: 0 auto !important;
+}
+
+.ant-btn-background-ghost {
+    width: 200px !important;
+    margin-left: 20px  !important;
+}
